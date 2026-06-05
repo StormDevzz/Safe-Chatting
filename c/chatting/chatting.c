@@ -1,5 +1,5 @@
 #include "chatting.h"
-#include "../../common.h"
+#include "../common.h"
 #include "../files/files.h"
 #include <stdio.h>
 #include <stdlib.h>

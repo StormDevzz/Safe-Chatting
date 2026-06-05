@@ -1,4 +1,4 @@
-#include "../../common.h"
+#include "../common.h"
 #include "../connection/connection.h"
 #include "../chatting/chatting.h"
 #include <stdio.h>
