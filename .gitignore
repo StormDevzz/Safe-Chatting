@@ -1,0 +1,21 @@
+# Binaries
+chatserver
+chat
+
+# Build artifacts
+*.o
+*.a
+
+# Runtime data
+storage/
+*.msg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
