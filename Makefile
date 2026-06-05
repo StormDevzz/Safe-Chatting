@@ -1,24 +1,21 @@
 .PHONY: all clean run
 
-CC = gcc
-CFLAGS = -O2 -Wall -Wextra -Ic -I.
-LDFLAGS = -lcrypto
+UNAME := $(shell uname -s)
 
-C_FILES := c/main/server.c c/connection/connection.c c/chatting/chatting.c \
-           c/encryption/encryption.c c/encryption/crypto.c c/files/files.c
-CLIENT_C := c/main/client.c
+all:
+ifeq ($(UNAME),Linux)
+	$(MAKE) -C c/linux all
+else
+	$(MAKE) -C c/windows all
+endif
 
-all: chatserver chat
-
-chatserver: $(C_FILES) common.h
-	$(CC) $(CFLAGS) -o $@ $(C_FILES) $(LDFLAGS)
-
-chat: $(CLIENT_C) common.h
-	$(CC) $(CFLAGS) -o $@ $(CLIENT_C)
-
-run: chatserver
-	@mkdir -p storage/messages
-	./chatserver $(PORT)
+run:
+ifeq ($(UNAME),Linux)
+	$(MAKE) -C c/linux run
+else
+	$(MAKE) -C c/windows run
+endif
 
 clean:
-	rm -f chatserver chat
+	$(MAKE) -C c/linux clean
+	$(MAKE) -C c/windows clean
